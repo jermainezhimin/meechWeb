@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Hirudo Therapy Patient Sign Up</title>
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/signup.css') }}" rel="stylesheet">
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="header">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+            <li role="presentation" ><a href="/main">Home</a></li>
+            <li role="presentation"><a href="/showSignin">Sign In</a></li>
+            <li role="presentation" class="active"><a href="/showSignUp">Sign Up</a></li>
+          </ul>
+        </nav>
+        <h3 class="text-muted">Sign Up Form</h3>
+      </div>
+ 
+      <div class="jumbotron">
+        <h2>Patient's Sign Up Form</h2>
+        <form class="form-signin" action="/signUp" method="POST">
+        
+	<label for="pName" class="sr-only">Name</label>
+        <input type="name" name="pName" id="pName" class="form-control" placeholder="Name" required autofocus>
+	
+	<label for="phpnum" class="sr-only">Handphone Number</label>
+        <input type="number" name="phpnum" id="phpnum" class="form-control" placeholder="Handphone Number" required autofocus>
+        
+        <label for="pGender" class="sr-only">Gender</label>
+        <input type="text" name="pGender" id="pGender" maxlength="1" class="form-control" placeholder="Gender (M/F)" required autofocus>
+
+	<label for="admittedDate" class="sr-only">Admitted Date</label>
+        <input type="date" name="admittedDate" id="admittedDate" class="form-control" placeholder="Admitted Date (DD/MM/YYYY)" required autofocus>
+
+	<label for="tid" class="sr-only">Team In Charge</label>
+        <input type="number" name="tid" id="tid" class="form-control" placeholder="Team In Charge" required autofocus>   
+
+	<label for="wid" class="sr-only">Ward</label>
+        <input type="number" name="wid" id="wid" class="form-control" placeholder="Ward" required autofocus> 
+        
+	<label for="bed" class="sr-only">Bed</label>
+        <input type="number" name="bed" id="" class="form-control" placeholder="Bed" required autofocus>   
+
+	<input type="submit" value="Submit" class="btn btn-lg btn-primary btn-block">	
+      </form>
+      </div>
+ 
+      <footer class="footer">
+        <p>&copy; SUTD | SingHealth 2016</p>
+      </footer>
+ 
+    </div>
+  </body>
+</html>

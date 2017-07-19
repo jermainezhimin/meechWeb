@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Hirudo Therapy Patient Home</title>
+    <span id="pid" style="visibility:hidden">{{ pid }}</span>
+    
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/signup.css') }}" rel="stylesheet">
+    
+    <script src="{{ url_for('static', filename='js/jquery-3.1.0.js') }}" ></script>
+    
+  </head>
+<script type="text/javascript">
+var speed = 5;
+function bSet(mode) {
+	console.log('bSet'+mode);
+	$.getJSON('/bSet/'+mode, 
+	function(data){
+		console.log(data);
+	})
+}
+
+function togglefr(){
+	console.log('toggle');
+    var elem = document.getElementById("fr1");
+    bSet(elem.value);
+    
+    if(elem.value=="START") {
+		elem.value="STOP";
+		elem.title="Stop blood pump";
+		document.getElementById("fr2").disabled=true;
+    }
+
+    else {
+		elem.value="START";
+		elem.title="Start blood pump";
+		document.getElementById("fr2").disabled=false;
+    }
+}
+ 
+ function update() {
+	var pid = $('#pid').text();
+	$.getJSON('/updateData/' + pid, 
+	function(data){
+		console.log(data.Temp);
+		$('#pid').text = data.uid;
+		$('#temp').html(data.Temp);
+		$('#hr').html(data.HR);
+		$('#fr').html(data.FR);
+	})
+}
+
+function cSet(mode) {
+	$.getJSON('/cSet/'+mode, 
+	function(data){
+		console.log(data);
+	})
+}
+
+function togglean(){
+    var elem = document.getElementById("an1");
+    cSet(elem.value);
+    
+    if(elem.value=="START") {
+		elem.value="STOP";
+		elem.title="Stop Anti-Coagulant";
+		document.getElementById("an2").disabled=true;
+    }
+
+    else {
+		elem.value="START";
+		elem.title="Start Anti-Coagulant";
+		document.getElementById("an2").disabled=false;
+    }
+}
+
+ function bSpeed(number) {
+	if (number=='+'){
+		speed+=1;
+		if (speed > 10){
+			speed = 10;
+		}
+		$.getJSON('/bSpeed/'+speed, 
+			function(data){
+				console.log(data);
+			})
+	}else{
+		speed-=1;
+		if (speed < 1){
+			speed = 1;
+		}
+		$.getJSON('/bSpeed/'+speed, 
+			function(data){
+				console.log(data);
+			})
+	}
+
+}
+
+function bInit() {
+	$.getJSON('/bInit', 
+	function(data){
+		console.log(data);
+	})
+}
+
+function cInit() {
+	$.getJSON('/cInit', 
+	function(data){
+		console.log(data);
+	})
+}
+
+update();
+ $(document).ready(function() {
+    setInterval("update()",6000); // call every 6 seconds
+});
+
+</script>
+
+  <body>
+    <div class="container">
+      <div class="header">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+            <li role="presentation" class="active"><a href="#">Home</a></li>
+            <li role="presentation"><a href="/showSignin">Sign In</a></li>
+            <li role="presentation" ><a href="#">Sign Up</a></li>
+          </ul>
+        </nav>
+        <h3 class="text-muted">{{ pname }}'s Data</h3>
+	<h4 class="text-muted">{{ pGender }}</h4>
+	<h4 class="text-muted">Ward {{ wid }} Bed {{ bed }}</h4>
+      </div>
+ 
+      <div class="jumbotron">
+
+<table border="0" width="100%">
+
+<tr>
+
+<td width="(100/3)%">
+
+      <h4 class="text-muted">Temperature</h4>
+      <img style='vertical-align:middle;width:10%;display:inline;' src="{{ url_for('static', filename='images/temp.png') }}"></img>
+      <div style='vertical-align:middle;display:inline;font-size:30;font-family:Helvetica;color:rgb(75,75,75);'>
+  	   <span id="temp"></span>&#186;C
+  	   
+      </div>
+<td width="(100/3)%">
+
+      <h4 class="text-muted">Heart Rate</h4>
+      <img style='vertical-align:middle;width:10%;display:inline;' src="{{ url_for('static', filename='images/heart.png') }}"></img>
+      <div style='vertical-align:middle;display:inline;font-size:30;font-family:Helvetica;color:rgb(75,75,75);'>
+  	   <span id="hr"></span>BPM
+  	  </div>
+
+<td width="(100/3)%">
+
+  	<h4 class="text-muted">Blood Flow Rate</h4>
+  	  <img style='vertical-align:middle;width:10%;display:inline;' src="{{ url_for('static', filename='images/flowrate.png') }}"></img>
+  	  <div style='vertical-align:middle;display:inline;font-size:30;font-family:Helvetica;color:rgb(75,75,75);'>
+  	   <span id="fr"></span>ML
+  	  </div>
+</table>
+<br><br>
+<h4 align="center">Blood Pump Control</h4>
+<table border="0" width="100%">
+<tr>
+<td width="(100/3)%">
+	<input title="Reset blood pump" id="fr2" type="button" name="reset" value="RESET" onClick="bInit();">
+<td width="(100/3)%">
+	<input title="Stop blood pump" id="fr1" type="button" name="start/stop" value="STOP" onClick="togglefr();">
+<td width="(100/3)%">
+
+<input title="Increase speed" style='vertical-align:middle;width:10%;' type="image" name="up" src="{{ url_for('static', filename='images/up.png') }}" onclick="bSpeed('+')">
+<br>
+<input title="Reduce speed" style='vertical-align:middle;width:10%;' type="image" name="down" src="{{ url_for('static', filename='images/down.png') }}" onclick="bSpeed('-')">
+
+
+</table>
+      
+  <h4 align="center">Anti-Coagulant Control</h4>
+<table border="0" width="100%">
+<tr>
+<td width="(100/3)%">
+	<input title="Reset anti-coagulant" id="an2" type="button" name="reset" value="RESET" onClick="cInit();">
+<td width="(100/3)%">
+	<input title="Stop anti-coagulant" id="an1" type="button" name="start/stop" value="STOP" onClick="togglean();">
+<td width="(100/3)%">
+
+</table>  
+    </div>
+
+<br><br><br>
+
+    </div>
+
+      </div>
+ 
+      <footer class="footer">
+        <p>&copy; SUTD | SingHealth 2016</p>
+      </footer>
+ 
+    </div>
+  </body>
+</html>

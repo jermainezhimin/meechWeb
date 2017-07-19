@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="HandheldFriendly" content="true">
+    <title>Hirudo: Hello World</title>
+  </head>
+
+  <body style='width:100%;', align='center'> <!style='transform:translate(50%, 500%);'>
+
+    <div style='display:block;'>
+      <!img style='vertical-align:middle;display:inline;width:10%;' src='images/thermometer.jpeg'></img>
+      <div style='float:left;border: 1px solid black;vertical-align:middle;display:inline-block;font-size:3.5;font-family:Helvetica;color:rgb(75,75,75);', align='right'>
+       {{ temp }}&#186;C&ensp;&ensp;
+      </div>
+    </div>
+
+
+    <div style='display:block;'>
+      <img style='vertical-align:middle;width:10%;display:inline;' src='images/thermometer.jpeg'></img>
+      <div style='vertical-align:middle;display:inline;font-size:3.5;font-family:Helvetica;color:rgb(75,75,75);'>
+  	   {{ temp }}&#186;C&ensp;&ensp;
+  	  </div>
+
+      <img style='vertical-align:middle;width:10%;display:inline;' src='images/heartrate.jpeg'></img>
+      <div style='vertical-align:middle;display:inline;font-size:3.5;font-family:Helvetica;color:rgb(75,75,75);'>
+  	   {{ hr }}BPM&ensp;&ensp;
+  	  </div>
+
+  	  <img style='vertical-align:middle;width:10%;display:inline;' src='images/blood.jpeg'></img>
+  	  <div style='vertical-align:middle;display:inline;font-size:3.5;font-family:Helvetica;color:rgb(75,75,75);'>
+  	   {{ fr }}ML&ensp;&ensp;
+  	  </div>
+    </div>
+
+
+    <div style='display:block;'>
+      <div style='vertical-align:middle;font-family:Helvetica;color:rgb(75,75,75);'>
+      {{ time }} {{ r }}
+      </div>
+    </div>
+
+
+    <script type="text/javascript">
+      setTimeout(refresh,5000)
+      function refresh() {this.document.location.href = location;}
+    </script>
+  </body>
+</html>

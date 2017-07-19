@@ -1,0 +1,39 @@
+<!DOCTYPE html>  
+<html lang="en"><head>  
+<meta charset="utf-8">  
+<title>Registration Form</title>  flaskk
+<meta name="Form" content="This document is an example of JavaScript Form registration form. " />   
+</head>  
+<body onload="document.registration.pname.focus();">  
+<h1>Registration Form</h1>  
+ 
+<form name='registration' action="/register/" method="POST">  
+<ul>  
+<li><label for="pname">Patientś Name:</label></li>  
+<li><input type="text" name="pname" size="12" /></li> 
+ 
+<li><label for="paddress">Address:</label></li>  
+<li><input type="text" name="paddress" size="12" /></li> 
+ 
+<li><label id="pgender">Gender:</label></li>  
+<li><input type="radio" name="msex" value="M" /><span>Male</span></li>  
+<li><input type="radio" name="fsex" value="F" /><span>Female</span></li>
+  
+<li><label>Admitted Date:(YYYY-MM-DD)</label></li>  
+<li><input type="date" name="admittedDate" size="12" /></li> 
+
+<li><label for="tid">Team ID:</label></li>  
+<li><input type="number" name="tid" min="1" /></li> 
+
+<li><label for="wid">Ward:</label></li>  
+<li><input type="number" name="wid" min="1" /></li> 
+
+<li><label for="bed">Bed:</label></li>  
+<li><input type="number" name="bed" min="1" /></li> 
+  
+<li><input type="submit" name="submit" value="Submit" /></li> 
+ 
+</ul>  
+</form>  
+</body>  
+</html>  

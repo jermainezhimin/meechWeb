@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Hirudo Therapy Patient Sign In</title>
+ 
+    
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+ 
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+    <link href="../static/css/signup.css" rel="stylesheet">
+    <script src="../static/js/jquery-3.1.0.js"></script>
+    
+  </head>
+ 
+  <body>
+ 
+    <div class="container">
+      <div class="header">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+            <li role="presentation" ><a href="#">Home</a></li>
+            <li role="presentation" class="active"><a href="/showSignin">Sign In</a></li>
+            <li role="presentation" ><a href="/showSignUp">Sign Up</a></li>
+          </ul>
+        </nav>
+        <h3 class="text-muted">Patient Sign In</h3>
+      </div>
+ 
+      <div class="jumbotron">
+        <h1>Patient Login</h1>
+        <form class="form-signin" action="/signIn" method="GET">
+        <label for="pName" class="sr-only">Name</label>
+        <input type="text" name="pName" id="pName" class="form-control" placeholder="Name" required autofocus>
+        <label for="phpnum" class="sr-only">HP Number</label>
+        <input type="number" name="phpnum" id="phpnum" class="form-control" placeholder="HP Number" required>
+         
+	<input type="submit" value="Submit" class="btn btn-lg btn-primary btn-block">	
+      </form>
+      </div>
+ 
+       
+ 
+      <footer class="footer">
+        <p>&copy; SUTD | SingHealth 2016</p>
+      </footer>
+ 
+    </div>
+  </body>
+</html>
